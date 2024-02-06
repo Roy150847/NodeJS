@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Form Submission Example</title>
+  <style>
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+  <h2>Submit Details</h2>
+  <form id="detailsForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br><br>
+    <label for="age">Age:</label>
+    <input type="number" id="age" name="age" required><br><br>
+    <button type="submit">Submit</button>
+  </form>
+  
+  <h2>Details Table</h2>
+  <table id="detailsTable">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+    </tbody>
+  </table>
+
+  <script>
+    document.getElementById('detailsForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      var name = document.getElementById('name').value;
+      var age = document.getElementById('age').value;
+
+      var tableBody = document.querySelector('#detailsTable tbody');
+      var newRow = tableBody.insertRow();
+
+      var cell1 = newRow.insertCell();
+      var cell2 = newRow.insertCell();
+
+      cell1.textContent = name;
+      cell2.textContent = age;
+
+      document.getElementById('name').value = '';
+      document.getElementById('age').value = '';
+    });
+  </script>
+</body>
+</html>

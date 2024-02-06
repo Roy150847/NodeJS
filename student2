@@ -1,0 +1,11 @@
+{
+  "Name": "MG Hector",
+  "Type": "Electric",
+  "Fuctions": {
+    "Speed": "240km/h",
+    "Speaker": "Dolby Atmos",
+    "Airbags": "10",
+    "Sunroof": "Present",
+    "Capacity": "7"
+  }
+}

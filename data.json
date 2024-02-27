@@ -1,0 +1,10 @@
+{
+    "name": "John Doe",
+    "age": 25,
+    "marks": {
+        "math": 90,
+        "science": 85,
+        "history": 95
+    },
+    "key_to_modify": "new_value"
+}

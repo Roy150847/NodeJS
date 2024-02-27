@@ -1,49 +1,29 @@
-// const fs = require('fs');
-// function modifyFile(filename, modification) {
-//     fs.readFile(filename, (err, data) => {
-//         if (err) {
-//             console.error('Error reading file:', err);
-//             return;
-//         }
-
-//         modification(data);
-
-//         fs.writeFile(filename, data, (err) => {
-//             if (err) {
-//                 console.error('Error writing file:', err);
-//                 return;
-//             }
-//             console.log('File has been modified and saved successfully.');
-//         });
-//     });
-// }
-
-// const filename = 'input.txt';
-
-// modifyFile(filename, (data) => {
-//     // Convert the data to uppercase
-//     data = data.toString().toUpperCase();
-// });
-
-
-
 const fs = require('fs');
 
-// Read binary data from a file
-fs.readFile('input.txt', (err, data) => {
+// Read the JSON file
+fs.readFile('data.json', 'utf8', (err, jsonString) => {
     if (err) {
-        console.error('Error reading file:', err);
+        console.log("Error reading file:", err);
         return;
     }
-    console.log('Read binary data:', data);
-});
 
-// Write binary data to a file
-const binaryData = Buffer.from('Hello, world!', 'utf8'); // Convert string to binary data
-fs.writeFile('input.txt', binaryData, (err) => {
-    if (err) {
-        console.error('Error writing file:', err);
-        return;
+    try {
+        // Parse JSON string to object
+        const data = JSON.parse(jsonString);
+
+        // Modify the content
+        data.key_to_modify = 'new_value';
+
+        // Write the changes back to the file
+        fs.writeFile('data.json', JSON.stringify(data, null, 4), (err) => {
+            if (err) {
+                console.log("Error writing file:", err);
+                return;
+            }
+            console.log('Changes saved successfully!');
+        });
+
+    } catch (err) {
+        console.log('Error parsing JSON string:', err);
     }
-    console.log('Binary data written to output.bin');
 });
